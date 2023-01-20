@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { createContext } from "react";
 import { useState } from "react";
 import "./App.css"
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 const itemContext = createContext(null)
 
