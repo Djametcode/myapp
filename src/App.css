@@ -1,5 +1,4 @@
 #infoBar {
-  background-color: slategray;
   font-family: 'Patrick Hand';
   font-size: 20px;
   text-align: center;
@@ -16,7 +15,6 @@
   justify-content: center;
   gap: 20px;
   padding: 20px;
-  background-color: slategrey;
 }
 #flex-input input {
   background-color: white;
@@ -47,7 +45,8 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
-  background-color: #2C74B3;
+  background-image: url('./image/wave-haikei.png');
+  background-size: cover;
   margin: 10px;
   border-radius: 10px;
   padding: 10px;
@@ -76,10 +75,14 @@
   scale: 0.9;
 }
 body {
-  background-color: slategrey;
+  background-image: url('./image/layered-waves-haikei.svg');
 }
 #header {
   position: sticky;
   top: 0;
   z-index: 2;
+  background-image: url('./image/wave-haikei (2).svg');
+  background-size: cover;
+  margin: 10px;
+  border-radius: 10px;
 }

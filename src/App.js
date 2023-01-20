@@ -8,7 +8,6 @@ import "./App.css"
 const itemContext = createContext(null)
 
 const headerstyle = {
-  backgroundColor: '#00337C',
   fontFamily: 'Patrick Hand',
   padding: '10px',
   textAlign: 'center',
@@ -85,7 +84,6 @@ const Header = () => {
   return (
     <div id="header" style={headerstyle}>
       <h1>{header}</h1>
-      <h2>By Djamet Coder</h2>
     </div>
   )
 }
