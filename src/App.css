@@ -1,38 +1,70 @@
-.App {
+#infoBar {
+  background-color: slategrey;
+  padding: 10px;
+  font-family: 'Patrick Hand';
+  font-size: 20px;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+#flex-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: aquamarine;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#flex-input input {
+  padding: 10px;
+  font-family: 'Patrick Hand';
+  font-size: 17px;
+  border: none;
+}
+#flex-input button {
+  border: none;
+  background-color: slategrey;
+  color: white;
+  font-family: 'Patrick hand';
+  padding: 10px;
+}
+#todo{
+  background-color: aquamarine;
+}
+#todo-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#todo-item {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  background-color: wheat;
+  padding: 25px;
+  margin: 10px;
+  border-radius: 10px;
+}
+#todo-item p {
+  background-color: slategray;
+  padding: 10px;
+  color: white;
+  width: 200px;
+  border-radius: 10px;
+  font-family: 'Patrick hand';
+  font-size: 20px;
+}
+#btn-style {
+  background-color: white;
+  justify-content: center;
+  height: 45px;
+  width: 75px;
+  transform: translateY(22px);
+  border: none;
+  font-family: 'Patrick hand';
+  font-size: 20px;
+  border-radius: 10px;
+}
+body {
+  background-color: slategrey;
 }

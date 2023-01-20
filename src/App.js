@@ -1,134 +1,113 @@
-// // import React, { useReducer, useState } from "react";
-
-// // const handleEverything = (state, action) => {
-// //   switch (action.type) {
-// //     case "Increment":
-// //       return {count: state.count + 1, showText: state.showText}
-// //     case "ShowText":
-// //       return {count: state.count + 1, showText: !state.showText}
-// //       default:
-// //         return state
-// //   }
-// // }
-
-// // const UseReduce = () => {
-// //   const [state, dispatch] = useReducer(handleEverything, 
-// //     {count: 0, showText: false, header: 'Use reduce latihan'})
-// //   return (
-// //     <div>
-// //       <h1>{state.header}</h1>
-// //       <h1>{state.count}</h1>
-// //       <button onClick={() => {
-// //         dispatch({ type: "Increment" });
-// //         dispatch({ type: 'ShowText' })      
-// //       }}>Increment</button>
-
-// //       {state.showText && (
-// //         <h3>Ini adalah harta karun</h3>
-// //       )}
-// //     </div>
-// //   )
-// // }
- 
-// // const App = () => {
-// //   const [count, setCount] = useState(0);
-// //   const [text, setText] = useState(true);
-// //   const [hidden, setHidden] = useState(false)
-
-// //   const addOne = () => {
-// //     setCount(count + 1);
-// //     setText(false)
-
-// //     if (count === 25) {
-// //       setHidden(true)
-// //       setText(true)
-// //     }
-// //   }
-// //   return (
-// //     <>
-// //       <div>
-// //       <h1>{count}</h1>
-// //       <button onClick={addOne}>Increment</button>
-// //       {text && (
-// //         <h2>Selamat datang</h2>
-// //       )}
-// //       {hidden && (
-// //         <h2>Selamat anda menemukan harta karun</h2>
-// //       )}
-// //       </div>
-// //       <div className="usereduce">
-// //         <UseReduce />
-// //       </div>
-// //     </>
-
-// //   )
-// // }
-
-// // export default App;
-
-// // import React, { useEffect, useState } from "react";
-// // import axios from 'axios'
-
-// // const App = () => {
-
-// //   const [data, setData] = useState('');
-
-// //   useEffect(() => {
-// //     axios
-// //     .get('https://jsonplaceholder.typicode.com/comments')
-// //     .then((response) => {
-// //       setData(response.data[0].email)
-// //       console.log(response.data)
-// //     })
-// //   }, []);
-// //   return (
-// //     <div className="app">
-// //       <h1>Selamat Datang</h1>
-// //       <h2>{data}</h2>
-// //     </div>
-// //   )
-// // }
-
-// // export default App
-
-
-// import React, { useRef, useState } from "react";
-
-// function App () {
-//   const inputRef = useRef(null)
-//   const [people, setPeople] = useState('People')
-
-
-//   const handleClick = () => {
-//     const item = inputRef.current.value;
-//     setPeople(item)
-//     inputRef.current.value = '';
-//   }  
-//   return (
-//     <div>
-//       <h1>Selamat Datang : {people}</h1>
-//       <input 
-//         type="text" 
-//         placeholder="Your Name"
-//         ref={inputRef}
-      
-//       />
-//       <button onClick={handleClick}>Login</button>
-//     </div>
-//   )
-// }
-
-// export default App;
-
-
 import React from "react";
-import UseContext from "./component/useContext";
+import { useRef } from "react";
+import { useContext } from "react";
+import { createContext } from "react";
+import { useState } from "react";
+import "./App.css"
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
-function App () {
+const itemContext = createContext(null)
+
+const headerstyle = {
+  backgroundColor: 'slateGrey',
+  fontFamily: 'Patrick Hand',
+  padding: '10px',
+  textAlign: 'center'
+}
+
+const TaskChild = ({data: {id, message}}) => {
+
+  const {task, setTask} = useContext (itemContext)
+  const handleDelet = () => {
+    const updatedtask = task.filter((item) => item.id !== id);
+    setTask(updatedtask)
+  }
+
+
   return (
-    <div>
-      <UseContext />
+    <div id="todo-list">
+      <li id="list">
+        <div id="todo-item">
+          <p>{message}</p>
+          <button id="btn-style" onClick={handleDelet}>Delete</button> 
+        </div>
+      </li>
     </div>
+  )
+}
+
+const TaskList = () => {
+  const {task} = useContext(itemContext);
+
+  const todo = task.map((item) => <TaskChild key={item} data = {item} />)
+  return (
+    <div id="todo">{todo}</div>
+  )
+}
+
+const TaskAdder = () =>  {
+  const {task, setTask, Inputref} = useContext(itemContext)
+
+
+  const handleClick = () => {
+    const newTask = {
+      id: task.length + 1,
+      message: Inputref.current.value
+    }
+    setTask([...task, newTask]);
+    Inputref.current.value = '';
+  }
+
+  return (
+    <div id="flex-input">
+      <input 
+        type="text" 
+        placeholder="Masukan task"
+        ref={Inputref}
+      />
+      <button onClick={handleClick}>Add Task</button>
+    </div>
+  )
+}
+
+const Infobar = () => {
+  const {task} = useContext(itemContext)
+  return (
+    <div id="infoBar">
+       <p>Ada {task.length} task yang harus dikerjakan</p>
+    </div>
+  )
+}
+
+const Header = () => {
+  const {header} = useContext(itemContext)
+  return (
+    <div style={headerstyle}>
+      <h1>{header}</h1>
+    </div>
+  )
+}
+
+const TodoApps = () => {
+  const [header, setHeader] = useState('Todo Apps Full javascript');
+  const [task, setTask] = useState([])
+  const [edit, setEdit] = useState(false);
+  const Inputref = useRef()
+  return (
+   <itemContext.Provider value={{header, setHeader, task, setTask, edit, setEdit, Inputref}}>
+    <div id="body">
+      <Header />
+      <Infobar />
+      <TaskAdder />
+      <TaskList />
+    </div>
+   </itemContext.Provider>
+  )
+}
+
+const App = () => {
+  return (
+    <TodoApps />
   )
 }
 
