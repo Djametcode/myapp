@@ -50,6 +50,7 @@ const TaskAdder = () =>  {
 
 
   const handleClick = () => {
+
     const newTask = {
       id: task.length + 1,
       message: Inputref.current.value
