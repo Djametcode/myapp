@@ -8,10 +8,11 @@ import "./App.css"
 const itemContext = createContext(null)
 
 const headerstyle = {
-  backgroundColor: 'slateGrey',
+  backgroundColor: '#00337C',
   fontFamily: 'Patrick Hand',
   padding: '10px',
-  textAlign: 'center'
+  textAlign: 'center',
+  color: 'white'
 }
 
 const TaskChild = ({data: {id, message}}) => {
@@ -27,7 +28,7 @@ const TaskChild = ({data: {id, message}}) => {
     <div id="todo-list">
       <li id="list">
         <div id="todo-item">
-          <p>{message}</p>
+          <p>Kegiatan yang harus dilakukan : <br /> {message}</p>
           <button id="btn-style" onClick={handleDelet}>Delete</button> 
         </div>
       </li>
@@ -81,8 +82,9 @@ const Infobar = () => {
 const Header = () => {
   const {header} = useContext(itemContext)
   return (
-    <div style={headerstyle}>
+    <div id="header" style={headerstyle}>
       <h1>{header}</h1>
+      <h2>By Djamet Coder</h2>
     </div>
   )
 }
